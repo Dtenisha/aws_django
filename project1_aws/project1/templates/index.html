@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+    <!-- Pyscript -->
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+
+    <!-- stylesheet and jquery -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <py-env>
+        -
+    </py-env>
+    <style>
+        body {
+            background-color: #fcfcfc;
+            padding-top: 55px;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<!-- <style>
+    body{
+        background-image: url('https://wavicledata.com/wp-content/uploads/2021/06/wavicle_data_solutions_og.jpg'); 
+        background-repeat : no-repeat;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-position: 50% 50%;
+        background-color: rgb(238, 231, 231);
+
+    }
+</style> -->
+<body>
+    <form action = "add">
+    {% csrf_token %}
+    <div class="container">
+        <p> <h3>Auto Feature Tool </h3></p>
+        <div id="header"></div>
+        <script>
+        var img = document.createElement("img");
+        img.src = "https://wavicledata.com/wp-content/uploads/2021/06/wavicle_data_solutions_og.jpg";
+        var src = document.getElementById("header");
+        if(img && img.style) {
+            img.style.height = '150px';
+            img.style.width = '280px';
+            img.style.position = 'absolute';
+            img.style.right = "10px";
+            img.style.top = "10px";
+         }
+        src.appendChild(img);
+        </script>
+        <!-- <p>Dataset Path</p>
+        <br></br> -->
+        <!-- <input type="text" name = 'url1' value="Enter the dataset"> -->
+
+        <label for="myfile">Upload the Data</label>
+        <input type ="file" id = "myfile" name = "file" accept=".txt,.csv,.xlsv"  accept-charset="utf-8" enctype="multipart/form-data">
+        <br>
+        <script>
+        
+        document.getElementById('myfile').onchange = function () {
+            alert('Selected file: ' + this.value);
+          };
+        </script>
+        <div id ="header">
+            <label>Dataset Columns</label><br>
+            <input type="radio" id = r1 name ="header" value ="Header">Header</input><br>
+            <input type="radio" id = r2 name ="header" value ="No Header">No Header</input>
+        </div>
+        <br><br>
+
+        <label>Process</label>
+        <div id="TypeofAnalysis">
+            <input type="radio" id="rd1" name="Type_of_Analysis" value="Analysis">Analysis</input><br>
+            <input type="radio" id="rd2" name="Type_of_Analysis" value="Analysis & Modelling">Analysis & Modelling</input>
+        </div>
+        <br><br>
+
+        <div id="sizeofdata" class="otheritems">
+            <label for="Size_of_data">Size of the dataset</label>
+            <br>
+            <input type="radio" id="sample_Data" name="Size_of_data" value="Sample">Sample Data</input>
+            <input type="text" id="num1" name="count1" value="sample size" style="background-color:rgb(207, 211, 216);">
+            <br>
+            <input type="radio" id="Full_Data" name="Size_of_data" value ='Full'>Full Data</input>
+            <br><br>
+
+            <label>Type of Correlation</label>
+            <br>
+            <input type="radio" id="Pearson" name="correlation" value="Pearson_correlation">
+            <label for="Pearson_correlation">Pearson</label>
+            <input type="radio" id="spearman" name="correlation" value="spearman_correlation">
+            <label for="spearman_correlation">Spearman</label>
+            <input type="radio" id="kendall" name="correlation" value="kendall_correlation">
+            <label for="kendall_correlation">Kendall</label>
+            <br><br>
+
+            <label>Dependent feature:</label><input type="textarea" name="Dep_feature" value="Enter the feature" style="background-color:rgb(207, 211, 216);">
+
+            <br>
+            <br>
+            <label for="Model">Model Type</label>
+            <select name="Model" id="Model">
+              <option value="Select the Model">None</option>
+              <option value="Regression">Regression</option>
+              <option value="Classification">Classification</option>
+            </select>
+        </div>
+        <br>
+        <script>
+            $(document).ready(function () {
+                $("input[name$='Analysis']").click(function () {
+                    var test = $(this).val();
+                    // window.alert($(this).val());
+                    if (test == "Analysis") {
+                        $("div.otheritems").hide();
+                    }
+                    else { $("div.otheritems").show(); }
+                    // $("#Analysis & Modelling" + test).show();
+                });
+            });
+        </script>
+    </div style="position:fixed;">
+        <center>
+          <button type="submit"  id = "button" onclick = myFunction() value="Submit" style="background-color:#7c7c97;" style=>Submit</button>
+        </center>
+        <p id="demo"></p>
+        <script>
+        function myFunction() {
+            document.getElementById('demo').innerHTML ="Processing....wait for an while";
+            demo.style.fontSize ='x-large';
+            demo.style.position = 'absolute';
+            demo.style.right = '100px';
+        }
+        </script>
+    </div>
+    </form>
+</body>
+</html>
